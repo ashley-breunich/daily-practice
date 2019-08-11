@@ -11,22 +11,24 @@
 
 var sortedSquares = function(A) {
     let squaredArr = [];
-    let done = false;
-    for(i = 0; i < A.length; i++) {
+    let minIdx;
+    let temp;
+    
+    for(let i = 0; i < A.length; i++) {
         let current = A[i]*A[i];
         squaredArr.push(current); 
     }
-     
-    while(!done) {
-        done = true;
-        for(i = 1; i < squaredArr.length; i++) {
-            if(squaredArr[i-1] > squaredArr[i]){
-                done = false;
-                let temp = squaredArr[i-1];
-                squaredArr[i-1] = squaredArr[i];
-                squaredArr[i] = temp; 
+    
+    for(let i = 0; i < squaredArr.length; i++) {
+        minIdx = i;
+        for(let j=i+1; j < squaredArr.length; j++) {
+            if(squaredArr[j] < squaredArr[minIdx]) {
+                minIdx = j;
             }
         }
+        temp = squaredArr[i];
+        squaredArr[i] = squaredArr[minIdx];
+        squaredArr[minIdx] = temp;
     }
     
     return squaredArr;
