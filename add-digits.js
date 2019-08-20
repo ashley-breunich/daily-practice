@@ -8,5 +8,17 @@
 //              Since 2 has only one digit, return it.
 
 var addDigits = function(num) {
-    return (num - 1) % 9 + 1;
+    let array = num.toString().split('');
+    
+    while(array.length >= 1) {
+        let digit = 0;
+        for(let i = 0; i < array.length; i ++) {
+            digit += Number(array[i]);
+        }
+        if (digit > 9) {
+            array = digit.toString().split('');
+        } else {
+            return digit;
+        }
+    }
 };
